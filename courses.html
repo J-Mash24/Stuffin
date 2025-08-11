@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Olympic Medals</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header>Stuffin,</header>
+  <nav>
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu1">Python projects</button>
+    <div id="menu1" class="dropdown">
+      <a href="#" data-article="python1">Article 1</a>
+      <a href="#" data-article="python2">Article 2</a>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu2">R projects</button>
+    <div id="menu2" class="dropdown">
+      <a href="#" data-article="r1">Reference A</a>
+      <a href="#" data-article="r2">Reference B</a>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu5">Sport Articles</button>
+
+    
+    <div id="menu5" class="dropdown">
+      
+      <div style="position:relative;">
+        <button class="submenu-btn" data-target="bullsDropdown">Bulls ▸</button>
+        <div id="bullsDropdown" class="dropdown nested">
+        <a href="articles/sport1.html" target="_blank" onclick="event.stopPropagation();">Is the Bulls’ close connection to Chicago fading?</a>
+        <a href="articles/sport2.html" onclick="_blank">Remembering the last beloved Bulls roster of 2012-13</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu6">Political & History Articles</button>
+    <div id="menu6" class="dropdown">
+      <a href="#" data-article="pol1">Reference A</a>
+      <a href="#" data-article="pol2">Reference B</a>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu7">Completed Courses</button>
+    <div id="menu7" class="dropdown">
+      <a href="#" onclick="openArticleInModal('courses'); return false;">Achievements</a>
+    </div>
+  </div>
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu7">Social Media</button>
+    <div id="menu7" class="dropdown">
+      <a href="#" onclick="openArticleInModal('courses'); return false;">LinkedIn</a>
+      <a href="#" onclick="openArticleInModal('courses1'); return false;">Substack</a>
+    </div>
+  </div>
+
+  </nav>
+ <main>
+    <article>
+	
+	</article>
+  </main>
+</body>
+</html>

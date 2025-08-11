@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Olympic Medals</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header>Stuffin,</header>
+  <nav>
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu1">Python projects</button>
+    <div id="menu1" class="dropdown">
+      <a href="#" data-article="python1">Article 1</a>
+      <a href="#" data-article="python2">Article 2</a>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu2">R projects</button>
+    <div id="menu2" class="dropdown">
+      <a href="#" data-article="r1">Reference A</a>
+      <a href="#" data-article="r2">Reference B</a>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu5">Sport Articles</button>
+
+    
+    <div id="menu5" class="dropdown">
+      
+      <div style="position:relative;">
+        <button class="submenu-btn" data-target="bullsDropdown">Bulls ▸</button>
+        <div id="bullsDropdown" class="dropdown nested">
+        <a href="articles/sport1.html" target="_blank" onclick="event.stopPropagation();">Is the Bulls’ close connection to Chicago fading?</a>
+        <a href="articles/sport2.html" onclick="_blank">Remembering the last beloved Bulls roster of 2012-13</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu6">Political & History Articles</button>
+    <div id="menu6" class="dropdown">
+      <a href="#" data-article="pol1">Reference A</a>
+      <a href="#" data-article="pol2">Reference B</a>
+    </div>
+  </div>
+  </nav>
+ <main>
+    <article>
+	<h2>Lack of Education</h2>
+    <p>There's an old saying: "Knowledge is king". It's true in a lot of cases. Because of the lack of education we tend to elect bad politicians. That's why wars happen, global warming occurs and a lot of other issues take place because of the lack of education. That's why I've looked at education stats worldwide using SQL and Python.</p>
+    <p>There was a clear domination by African countries, but some numbers were staggering. For example, less than 40% of South Sudans boys finish primary school. With girls, situation is even more tragic, with about 20% percent of girls finishing primary school. Overall, we have 8 countries in Africa, where less than or around 40% of kids finish primary school. Central Africa Republic hovers around 52%. With girls, situation is much more worse in that area.
+If you look at other stats, situation is a bit better with girls, if you look at literacy rate age 15-24. There girls show better results than boys. But numbers doesn't get much higher than 70% of girls that can read. Results are worst in CAR, where only 30% of boys can read age 15-24. Niger is not that much better.</p>
+    <p>In South Sudan, Equatorial Guinea or Eritrea, more than 60% of girls drop out of primary school. With male, numbers are a bit lower, but it still exceds 50% in those mentioned countries (except Eritrea). Even in the country like Senegal, that you would consider pretty stable, that number exceeds 30% among boys. Sure, Casamance conflict is still happening, but it's low-level.
+I've looked at birth rate and unemployment rate, but they don't coinside necceserily. For example, Niger is leading the way with 4.6 child on average, but unemployment rate is only 0.47%. Chad is second with 4.2 child per family and 1.89% of unemployment rate. To be honest, I don't know how valid those work force numbers are.</p>
+<p>The thing is, that those countries, majority of them, do have natural resources. Whether is oil, uranium or gold. Imagine, if education level would be higher, how so much better continent would be doing. And it would solve a lot of problems. It would reduce migration rate to Europe, there would be less wars and countries would decrease their dependency on foreign aid. Can it be achieved, it remains to be seen. For now, until next time. :)</p>      
+<img src="https://media.licdn.com/dms/image/v2/D4D22AQGWiQ1CclSAUg/feedshare-shrink_800/feedshare-shrink_800/0/1710456199832?e=1757548800&v=beta&t=OLWLog1ucPrP9KZ2dLDB2bzau1fYunFiZOPhx0FH6WU" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)" />
+<img src="https://media.licdn.com/dms/image/v2/D4D22AQFwRIycFRtWkg/feedshare-shrink_800/feedshare-shrink_800/0/1710456199791?e=1757548800&v=beta&t=BA_lOf5xzQtUbEFZGllTaZ0RFBJ0xr4J_3qeJxlinVI" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)" />
+<img src="https://media.licdn.com/dms/image/v2/D4D22AQHja3DE2WKuMQ/feedshare-shrink_800/feedshare-shrink_800/0/1710456199992?e=1757548800&v=beta&t=puLww0nXCShieDMptZCacJWr1G4wh49T6xjqT3NHK_M" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)" />
+<img src="https://media.licdn.com/dms/image/v2/D4D22AQH8q8WtRRgVbg/feedshare-shrink_800/feedshare-shrink_800/0/1710456199860?e=1757548800&v=beta&t=1l_IxDQjXuvHY3y4O5Bo4YiKqffLXVMtArvaPgX5vdE" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)" />
+
+	</article>
+  </main>
+</body>
+</html>

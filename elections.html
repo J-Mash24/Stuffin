@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Olympic Medals</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header>Stuffin,</header>
+  <nav>
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu1">Python projects</button>
+    <div id="menu1" class="dropdown">
+      <a href="#" data-article="python1">Article 1</a>
+      <a href="#" data-article="python2">Article 2</a>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu2">R projects</button>
+    <div id="menu2" class="dropdown">
+      <a href="#" data-article="r1">Reference A</a>
+      <a href="#" data-article="r2">Reference B</a>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu5">Sport Articles</button>
+
+    
+    <div id="menu5" class="dropdown">
+      
+      <div style="position:relative;">
+        <button class="submenu-btn" data-target="bullsDropdown">Bulls ▸</button>
+        <div id="bullsDropdown" class="dropdown nested">
+        <a href="articles/sport1.html" target="_blank" onclick="event.stopPropagation();">Is the Bulls’ close connection to Chicago fading?</a>
+        <a href="articles/sport2.html" onclick="_blank">Remembering the last beloved Bulls roster of 2012-13</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu6">Political & History Articles</button>
+    <div id="menu6" class="dropdown">
+      <a href="#" data-article="pol1">Reference A</a>
+      <a href="#" data-article="pol2">Reference B</a>
+    </div>
+  </div>
+  </nav>
+ <main>
+    <article>
+	<h2>USA Elections</h2>
+    <p>As US presidential elections looms closer by each and every day, I thought it would be a good time look at the past election results and see what had happened before. By using Python, I've done some charts and some counting. I've used data from 1976-2020. So, let's take a closer look.</p>
+    <p>1. As you may very-well know, this November there won't be just presidential election. People of US will also elect all 435 members of the House of Representatives and 34 of the 100 Senate members. In this analysis, I've looked just at presidential and senate election results.</p>
+    <p>2. You can see in the Senate election chart, that it looks somewhat like seismograph diagram. By almost every election, results do change drastically. If before 2000 you can see at least a little stability, after the start of the new millenium it goes up and down by every election. Since senate, at least part of it, is being elected every two years, usually it goes badly for the elected president. Even for Barack Obama, who was very popular in 2008, in 2010 Senate elections, democrats got defeated significantly.</p>
+    <p>3. In total, Democrats have a little advantage against Republicans with 391 versus 375. Other 9 was won by other parties.</p>
+    <p>4. If you look at the swing states, results are pretty similar. </p>
+    <p>5. Presidential chart looks pretty interesting. Especially the 1984 election, where Ronald Reagan won 48 of the possible 50 states. Only states, where Democrat Walter Mondale won, was Minnesota, which was his home state and where he won by 0.18% and Disctrict of Columbia. It was the last time when candidates were separated by double digits in the popular vote.</p>
+    <p>6. Presidential chart doesn't tell the whole story. It's not necceseraly how many states you win, but which states. Because of it's electoral system, the size of the state matters way more.</p>
+    <p>7. Overall, Republicans are leading the way 358-254 state wins in the presidential elections.</p>
+    <p>8. Since 1976, there were few Democrats, who won senate elections 6 times. Republicans had two members of senate, who won it's elections 7 times.
+When people say, that Biden was too old to run for his second term, Republican Orrin G. Hatch finished his last term when he was 85. He spent 42 years in the Senate.</p>
+<p>9. Ronald Reagan dominates with 92 state wins. He won 44 states the first time in 1980 and 48 in 1984. Amazing.</p>
+<p>Bill Clinton won 65 in his two races. He's leading the way for the Democrats. Barack Obama is second with 56.</p>
+<p>10. Swing states do matter a lot. If candidate wins majority of swing states, he becomes a president. That was the case in every election since 1976. And probably that trend will continue.</p>
+
+<img src="https://media.licdn.com/dms/image/v2/D4D22AQGfTOWbrBIa0w/feedshare-shrink_1280/feedshare-shrink_1280/0/1725050446047?e=1757548800&v=beta&t=1kFuDFLGKeuS17hri-FNx4fb3zu4-Ok5uD7u34nULmI" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)"/>
+<img src="https://media.licdn.com/dms/image/v2/D4D22AQHRxpj3NNMgeA/feedshare-shrink_1280/feedshare-shrink_1280/0/1725050445804?e=1757548800&v=beta&t=mGxV3hpFtjcazG_4B9fAo1YNk-W7OqrHDmhexh4mWJo" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)"/>
+<img src="https://media.licdn.com/dms/image/v2/D4D22AQHqoy_sQuQsDg/feedshare-shrink_1280/feedshare-shrink_1280/0/1725050445887?e=1757548800&v=beta&t=eZ13d9FRUiLmKfCjYOfLA0ykEVIxI4v3j0P02Ddxjco" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)"/>
+<img src="https://media.licdn.com/dms/image/v2/D4D22AQF340VreH8O3A/feedshare-shrink_1280/feedshare-shrink_1280/0/1725050445805?e=1757548800&v=beta&t=6y2BgJ0QrMR2fSnkRFAXEfIAVbvKR7lRxTDEA63-h0w" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)"/>
+<img src="https://media.licdn.com/dms/image/v2/D4D22AQG7aNoYIOAUBg/feedshare-shrink_1280/feedshare-shrink_1280/0/1725050445813?e=1757548800&v=beta&t=8P749CaSRGm-P8B1op6B5ueCElx_BnB030ZjdnfIAHM" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)"/>
+<img src="https://media.licdn.com/dms/image/v2/D4D22AQFCcyrdT7LHzw/feedshare-shrink_800/feedshare-shrink_800/0/1725050445833?e=1757548800&v=beta&t=7eZTRnxamX7KfTVwG48-3369Wu3QRmhX5adPmRAzBj8" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)"/>
+<img src="https://media.licdn.com/dms/image/v2/D4D22AQEuoVx1O2h5zg/feedshare-shrink_800/feedshare-shrink_800/0/1725050445759?e=1757548800&v=beta&t=OPlVlKdkq9HcMdU6aTToEsqPYKfmmSLcq-Ks9hfV83Y" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)"/>
+
+	</article>
+  </main>
+</body>
+</html>

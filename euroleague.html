@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Olympic Medals</title>
+  <link rel="stylesheet" href="../styles.css" />
+</head>
+<body>
+  <header>Stuffin,</header>
+  <nav>
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu1">Python projects</button>
+    <div id="menu1" class="dropdown">
+      <a href="#" data-article="python1">Article 1</a>
+      <a href="#" data-article="python2">Article 2</a>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu2">R projects</button>
+    <div id="menu2" class="dropdown">
+      <a href="#" data-article="r1">Reference A</a>
+      <a href="#" data-article="r2">Reference B</a>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu5">Sport Articles</button>
+
+    
+    <div id="menu5" class="dropdown">
+      
+      <div style="position:relative;">
+        <button class="submenu-btn" data-target="bullsDropdown">Bulls ▸</button>
+        <div id="bullsDropdown" class="dropdown nested">
+        <a href="articles/sport1.html" target="_blank" onclick="event.stopPropagation();">Is the Bulls’ close connection to Chicago fading?</a>
+        <a href="articles/sport2.html" onclick="_blank">Remembering the last beloved Bulls roster of 2012-13</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-item">
+    <button class="menu-btn" data-target="menu6">Political & History Articles</button>
+    <div id="menu6" class="dropdown">
+      <a href="#" data-article="pol1">Reference A</a>
+      <a href="#" data-article="pol2">Reference B</a>
+    </div>
+  </div>
+  </nav>
+ <main>
+    <article>
+	<h2>Euroleague</h2>
+  <p>I promise, this is going to be the only basketball analysis, that I'll do. Well, maybe one of the two. Recently, I've found Euroleague basketball data, that covers more than 20 years. From 2000 until 2021. Last two seasons are excluded, so some things might've changed, but it hadn't changed the bigger picture. This is from so called "modern" Euroleague, which is nonsense, but it's a topic for another day.</p>
+  <p>I've took 20 games as a benchmark for a player, since I think, that is a fair number. It means, that you've played at least a full season or close to it and your numbers wasn't a fluke. </p>
+  <p>Just for fun, I've created some player clubs, that I'll explain them later. Without further do, let's get into the action. 🙂 </p>
+  <p>1. From the TOP10 Euroleague's 3 pointers made list, only one shot at least 40%. He was Sergio Rodriguez, but since then, his percentage dropped below that mark. From that list, Vassilis Spanoulis jumps out at only 32%. But he was excellent in the late game situations, so don't let that number fool you.</p>
+  <p>2. In the NBA, as a truly great shooter, player needs to reach 50-40-90 marks. At least once in his carrer. In the Euroleague, only 4 players in history had reach that mark. Out of that list, a guy, who jumps out, is Fran Pilepic. I've never heard of him, but he is a Croatian sharp shooter, who played 2 seasons in the Euroleague and averaged 8.1ppg. Other three players are well-known: Luigi Datome, Janis Strelnieks and Nando De Colo.</p>
+  <p>3. European basketball is valued for it's team play, so maybe there's no surprise, that just 4 players averaged more than 20ppg in their careers.
+Top of that list is Euroleague legend Alphonso Ford. But the other 3, might surprise you. My bad, I've abandoned my rule here. Derrick Hamilton, who played back in 2000-01 season, averaged 21.8ppg, but played in just 10 games. Jemeil Rich, who also had a short stint in Lithuania, playing for "Sakalai" Vilnius, averaged 21.5ppg in the 00-01 season playing for the Lugano "Snakes". The last one is Marc Salyers, who averaged 21.8ppg in the 07-08 Euroleague campaign. </p>
+<p>So, as you can see, only Alphonso Ford played in more than 20 games, from this list (54). This list only shows, how hard is to score in the Euroleague.
+4. Defense is being valued in Europe. I've looked at players, who averaged at least 1 steal and 1 block per game in their careers. The list was shorter, than I've expected. It included just 4 players. Rashard Griffith, a "Kinder" Bologna legend, Andrei Kirilenko, Marcus Goree and Brian Randle, who played for "ALBA" Berlin and "Maccabi" Tel Aviv.</p>
+<p>5. A list of players, who averaged more than 2 steals per game, reached 6. It includes some legendary names, that needs no introduction: Dejan Tomasevic, Jeff Trepagnier, Manu Ginobili, Fred House, who left a significant mark in Lithuania, Riccardo Pittis and David Vanterpool.
+Since I've reached maximum amount of symbols, the rest I'll take to part 2. 🙂</p>
+<img src="https://media.licdn.com/dms/image/v2/D4E22AQGHX2rTQieqPw/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1695334368271?e=1757548800&v=beta&t=RVNQu0xcYh9Bg_TNxf3OcuuTo-aGWFxcyUKkJlV6INc" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)" />
+<img src="https://media.licdn.com/dms/image/v2/D4E22AQGRb5_SN-3AIA/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1695334368058?e=1757548800&v=beta&t=CsRRiJOUUX-9j4duaKNz6A7sEkNgok6Oxa34BQMYtvM" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)" />
+<img src="https://media.licdn.com/dms/image/v2/D4E22AQG6Mxwu0P2fyw/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1695334368083?e=1757548800&v=beta&t=6mvgxuQjDpYWAwypNgkKMkMVX3qKpSTG0ddrW2hWjJs" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)" />
+<img src="https://media.licdn.com/dms/image/v2/D4E22AQGH85tZFEEKMQ/feedshare-shrink_2048_1536/feedshare-shrink_2048_1536/0/1695334367649?e=1757548800&v=beta&t=h_wiSwAj66iAJZeQ3At5Hand4g4BHDoQCFmbUxgNc0Q" alt="euro" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)" />
+	</article>
+  </main>
+</body>
+</html>
