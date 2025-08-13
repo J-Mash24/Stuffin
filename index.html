@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stuffin,</title>
 <style>
-  /* Basic page layout / fonts */
   body {
     margin: 0;
     font-family: 'Cooper Black', Arial, sans-serif;
@@ -13,7 +12,7 @@
     color: #111;
   }
 
-  /* Header (top-right page name) */
+ 
   header {
     display: flex;
     justify-content: flex-end;
@@ -24,7 +23,7 @@
     font-size: 1.4rem;
   }
 
-  /* Top navigation bar */
+  
   nav {
     display: flex;
     gap: 18px;
@@ -34,9 +33,9 @@
     align-items: center;
   }
 
-  /* Each item in the nav is a menu-item; button toggles the dropdown */
+  
   .menu-item {
-    position: relative; /* makes absolute dropdown position relative to this */
+    position: relative; 
   }
 
   .menu-btn {
@@ -50,7 +49,7 @@
   }
   .menu-btn:focus { outline: 2px solid #999; }
 
-  /* Dropdowns (hidden by default) */
+  
   .dropdown {
     display: none;
     position: absolute;
@@ -63,7 +62,7 @@
     z-index: 1000;
   }
 
-  /* nested dropdown appears to the right of its parent dropdown */
+  
   .dropdown.nested {
     left: 100%;
     top: 0;
@@ -84,7 +83,7 @@
     background: #f1f1f1;
   }
 
-  /* Main content and articles */
+  
   main {
     max-width: 900px;
     margin: 24px auto;
@@ -100,7 +99,7 @@
     text-align: left;
   }
 
-  /* article-content (the articles shown when clicking links) */
+ 
   .article-content {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif !important;
@@ -117,7 +116,7 @@
     opacity: 1;
   }
 
-  /* small responsive tweak */
+  
   @media (max-width: 640px) {
     nav { overflow-x: auto; }
     .dropdown { min-width: 160px; }
@@ -126,7 +125,7 @@
 #modalContent * {
   font-family: Arial, Helvetica, sans-serif !important;
 }
-/* Small screen adjustments */
+
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
@@ -160,7 +159,7 @@
   }
 }
 
-/* Extra small screens */
+
 @media (max-width: 480px) {
   header {
     font-size: 1.2rem;
@@ -192,7 +191,7 @@
   <button class="menu-btn" data-target="menu1">Python projects</button>
   <div id="menu1" class="dropdown">
 
-    <!-- First submenu -->
+    
     <div style="position:relative;">
       <button class="submenu-btn" data-target="PoliticalAnalysisDropdown">Politcal Analysis ▸</button>
       <div id="PoliticalAnalysisDropdown" class="dropdown nested">
@@ -205,7 +204,7 @@
       </div>
     </div>
 
-    <!-- Second submenu -->
+    
     <div style="position:relative;">
       <button class="submenu-btn" data-target="SportsAnalysisDropdown">Sports Analysis ▸</button>
       <div id="SportsAnalysisDropdown" class="dropdown nested">
@@ -294,7 +293,7 @@ We talked about the opening of NATO's doors, about the first (and so far only) a
   </div>
 
 
-  <!-- Article contents that show when clicking dropdown links -->
+  
   <div id="python1" class="article-content">
     <h2>Olympic Medals</h2>
     <img src="https://assets.aws.worldathletics.org/large/61102815c0313acaff244dd4.jpg" alt="medals" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)" />
@@ -1011,20 +1010,20 @@ When people say, that Biden was too old to run for his second term, Republican O
   </div>
 </main>
 
-<!-- Modal container (hidden by default) -->
+
 <div id="articleModal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()">✖</button>
     <div id="modalContent"></div>
   </div>
 </div>
-<!-- Image Zoom Overlay -->
+
 <div id="imgZoomOverlay" onclick="closeZoom()">
   <img id="zoomedImg" src="" alt="Zoomed Image" />
 </div>
 
 
-<!-- Search results area -->
+
 <div class="search-container">
   <input type="text" id="searchInput" placeholder="Search articles..." />
   <button onclick="searchArticles()">Search</button>
@@ -1032,7 +1031,7 @@ When people say, that Biden was too old to run for his second term, Republican O
 
 <div id="searchResults"></div>
 <style>
-/* ===== Modal ===== */
+/
 #articleModal {
   display: none;
   position: fixed;
@@ -1067,7 +1066,7 @@ When people say, that Biden was too old to run for his second term, Republican O
   border: none;
 }
 
-/* ===== Image Zoom Overlay ===== */
+
 #imgZoomOverlay {
   display: none;
   position: fixed;
@@ -1089,7 +1088,7 @@ When people say, that Biden was too old to run for his second term, Republican O
   box-shadow: 0 0 10px #fff;
 }
 
-/* ===== Search Bar ===== */
+
 .search-container {
   margin-bottom: 10px;
   text-align: center;
@@ -1110,7 +1109,7 @@ When people say, that Biden was too old to run for his second term, Republican O
   text-align: center;
 }
 
-/* ===== Mobile Adjustments ===== */
+
 @media (max-width: 480px) {
   #articleModal .modal-box {
     padding: 12px;
@@ -1138,7 +1137,7 @@ When people say, that Biden was too old to run for his second term, Republican O
 
 <script>
 
-  // Toggle a dropdown by id, but keep ancestor dropdowns open for nested menus
+  
   function toggleDropdownById(id) {
   const target = document.getElementById(id);
   if (!target) return;
@@ -1175,7 +1174,7 @@ function showArticleById(id) {
   }
 }
 
-// Handle both click and touch events for menu buttons
+
 ['click', 'touchstart'].forEach(eventType => {
   document.querySelectorAll('.menu-btn, .submenu-btn').forEach(btn => {
     btn.addEventListener(eventType, e => {
@@ -1186,7 +1185,7 @@ function showArticleById(id) {
   });
 });
 
-// Dropdown links open articles
+
 document.querySelectorAll('.dropdown a[data-article]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
@@ -1196,11 +1195,11 @@ document.querySelectorAll('.dropdown a[data-article]').forEach(link => {
   });
 });
 
-// Click/tap outside closes menus
+
 document.addEventListener('click', closeAllDropdowns);
 document.addEventListener('touchstart', closeAllDropdowns);
 
-// Escape key closes menus and articles
+
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeAllDropdowns();
@@ -1208,7 +1207,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-// ===== Modal Functions =====
+
 function openArticleInModal(articleId) {
   const modal = document.getElementById('articleModal');
   const modalContent = document.getElementById('modalContent');
@@ -1226,7 +1225,7 @@ function closeModal() {
   document.body.style.overflow = 'auto';
 }
 
-// ===== Image Zoom =====
+
 function zoomImage(src) {
   const overlay = document.getElementById('imgZoomOverlay');
   const zoomedImg = document.getElementById('zoomedImg');
@@ -1241,7 +1240,7 @@ function closeZoom() {
   document.body.style.overflow = 'auto';
 }
 
-// ===== Search =====
+
 function searchArticles() {
   const query = document.getElementById('searchInput').value.toLowerCase();
   const resultsDiv = document.getElementById('searchResults');
@@ -1279,3 +1278,4 @@ document.querySelectorAll('.open-modal').forEach(link => {
 </script>
 </body>
 </html>
+
