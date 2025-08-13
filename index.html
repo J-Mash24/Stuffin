@@ -1139,13 +1139,14 @@ When people say, that Biden was too old to run for his second term, Republican O
 <script>
 
   
-  function toggleDropdownById(id) {
+  /* ===== DROPDOWNS ===== */
+function toggleDropdownById(id) {
   const target = document.getElementById(id);
   if (!target) return;
 
   const isOpen = target.style.display === 'block';
 
-  
+  // Close all other dropdowns except ancestors
   document.querySelectorAll('.dropdown').forEach(d => {
     if (d !== target && !d.contains(target)) {
       d.style.display = 'none';
@@ -1159,6 +1160,7 @@ function closeAllDropdowns() {
   document.querySelectorAll('.dropdown').forEach(d => d.style.display = 'none');
 }
 
+/* ===== ARTICLES ===== */
 function hideAllArticles() {
   document.querySelectorAll('.article-content').forEach(a => {
     a.classList.remove('visible');
@@ -1168,48 +1170,14 @@ function hideAllArticles() {
 function showArticleById(id) {
   hideAllArticles();
   closeAllDropdowns();
-  const a = document.getElementById(id);
-  if (a) {
-    a.classList.add('visible');
-    a.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const article = document.getElementById(id);
+  if (article) {
+    article.classList.add('visible');
+    article.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
-
-['click', 'touchstart'].forEach(eventType => {
-  document.querySelectorAll('.menu-btn, .submenu-btn').forEach(btn => {
-    btn.addEventListener(eventType, e => {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleDropdownById(btn.dataset.target);
-    });
-  });
-});
-
-
-document.querySelectorAll('.open-modal').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    e.stopPropagation();
-    const articleId = link.dataset.articleId;
-    openArticleInModal(articleId);
-    closeAllDropdowns(); 
-  });
-});
-
-
-document.addEventListener('click', closeAllDropdowns);
-document.addEventListener('touchstart', closeAllDropdowns);
-
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeAllDropdowns();
-    hideAllArticles();
-  }
-});
-
-
+/* ===== MODAL ===== */
 function openArticleInModal(articleId) {
   const modal = document.getElementById('articleModal');
   const modalContent = document.getElementById('modalContent');
@@ -1227,7 +1195,7 @@ function closeModal() {
   document.body.style.overflow = 'auto';
 }
 
-
+/* ===== IMAGE ZOOM ===== */
 function zoomImage(src) {
   const overlay = document.getElementById('imgZoomOverlay');
   const zoomedImg = document.getElementById('zoomedImg');
@@ -1242,16 +1210,16 @@ function closeZoom() {
   document.body.style.overflow = 'auto';
 }
 
-
+/* ===== SEARCH ===== */
 function searchArticles() {
   const query = document.getElementById('searchInput').value.toLowerCase();
   const resultsDiv = document.getElementById('searchResults');
   resultsDiv.innerHTML = '';
 
   const articles = [
-    { title: "Is the Bulls’ close connection to Chicago fading?", link: "articles/sport1.html" },
-    { title: "Remembering the last beloved Bulls roster of 2012-13", link: "articles/sport2.html" },
-    { title: "Celtics comeback stories", link: "articles/celtics1.html" }
+    { title: "Is the Bulls’ close connection to Chicago fading?", id: "sport1" },
+    { title: "Remembering the last beloved Bulls roster of 2012-13", id: "sport2" },
+    { title: "Celtics comeback stories", id: "celtics1" }
   ];
 
   const matches = articles.filter(article => article.title.toLowerCase().includes(query));
@@ -1259,16 +1227,65 @@ function searchArticles() {
   if (matches.length > 0) {
     matches.forEach(article => {
       const a = document.createElement('a');
-      a.href = article.link;
-      a.target = "_blank";
+      a.href = "#";
       a.textContent = article.title;
-      a.className = 'search-result'; 
+      a.className = 'search-result open-modal';
+      a.dataset.articleId = article.id;
+      a.style.display = 'block';
+      a.style.margin = '5px 0';
       resultsDiv.appendChild(a);
     });
+
+    // Attach modal opening to new search links
+    attachModalLinks();
   } else {
     resultsDiv.textContent = "No articles found.";
   }
 }
+
+/* ===== EVENT ATTACHMENTS ===== */
+function attachModalLinks() {
+  document.querySelectorAll('.open-modal').forEach(link => {
+    // Remove previous listener to avoid duplicates
+    link.replaceWith(link.cloneNode(true));
+  });
+
+  document.querySelectorAll('.open-modal').forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      e.stopPropagation();
+      openArticleInModal(link.dataset.articleId);
+      closeAllDropdowns();
+    });
+  });
+}
+
+/* ===== INITIALIZE ===== */
+['click', 'touchstart'].forEach(eventType => {
+  document.querySelectorAll('.menu-btn, .submenu-btn').forEach(btn => {
+    btn.addEventListener(eventType, e => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleDropdownById(btn.dataset.target);
+    });
+  });
+});
+
+// Click outside closes dropdowns
+['click', 'touchstart'].forEach(eventType => {
+  document.addEventListener(eventType, closeAllDropdowns);
+});
+
+// Escape key closes dropdowns and articles
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeAllDropdowns();
+    hideAllArticles();
+  }
+});
+
+// Initial attach of modal links
+attachModalLinks();
 
 
 
