@@ -196,12 +196,12 @@
     <div style="position:relative;">
       <button class="submenu-btn" data-target="PoliticalAnalysisDropdown">Politcal Analysis ▸</button>
       <div id="PoliticalAnalysisDropdown" class="dropdown nested">
-        <a href="#" onclick="openArticleInModal('military spending'); return false;">Military Spending</a>
-        <a href="#" onclick="openArticleInModal('education'); return false;">Lack of Education</a>
-        <a href="#" onclick="openArticleInModal('china'); return false;">China's Global Role</a>
-        <a href="#" onclick="openArticleInModal('chinasm'); return false;">Chinese Emigration</a>
-        <a href="#" onclick="openArticleInModal('germany'); return false;">German Politics</a>
-        <a href="#" onclick="openArticleInModal('elections'); return false;">USA Elections</a>
+        <a href="#" data-article-id="military spending" class="open-modal">Military Spending</a>
+       <a href="#" data-article-id="education" class="open-modal">Lack of Education</a>
+       <a href="#" data-article-id="china" class="open-modal">China's Global Role</a>
+        <a href="#" data-article-id="chinam" class="open-modal">Chinese Emigration</a>
+        <a href="#" data-article-id="germany" class="open-modal">German Politics</a>
+        <a href="#" data-article-id="elections" class="open-modal">USA Elections</a>
       </div>
     </div>
 
@@ -209,13 +209,13 @@
     <div style="position:relative;">
       <button class="submenu-btn" data-target="SportsAnalysisDropdown">Sports Analysis ▸</button>
       <div id="SportsAnalysisDropdown" class="dropdown nested">
-        <a href="#" onclick="openArticleInModal('python1'); return false;">Olympic Medals (Sprint)</a>
-        <a href="#" onclick="openArticleInModal('euroleague'); return false;">Euroleague (Part 1)</a>
-        <a href="#" onclick="openArticleInModal('euroleague2'); return false;">Euroleague (Part 2)</a>
-        <a href="#" onclick="openArticleInModal('olympic marathon'); return false;">Olympic Medals (Marathon)</a>
-        <a href="#" onclick="openArticleInModal('olympic marathon(women)'); return false;">Olympic Medals (Marathon (Women))</a>
-        <a href="#" onclick="openArticleInModal('carter'); return false;">Vince Carter Shooting Chart</a>
-        <a href="#" onclick="openArticleInModal('nhl'); return false;">NHL Goal Density</a>
+        <a href="#" data-article-id="python1" class="open-modal">Olympic Medals (Sprint)</a>
+        <a href="#" data-article-id="euroleague" class="open-modal">Euroleague (Part 1)</a>
+        <a href="#" data-article-id="euroleague2" class="open-modal">Euroleague (Part 2)</a>
+        <a href="#" data-article-id="olympic marathon" class="open-modal">Olympic Medals (Marathon)</a>
+        <a href="#" data-article-id="olympic marathon(women)" class="open-modal">Olympic Medals (Marathon (Women))</a>
+        <a href="#" data-article-id="carter" class="open-modal">Vince Carter Shooting Chart</a>
+        <a href="#" data-article-id="nhl" class="open-modal">NHL Goal Density</a>
       </div>
     </div>
 
@@ -1268,6 +1268,12 @@ function searchArticles() {
     resultsDiv.textContent = "No articles found.";
   }
 }
+document.querySelectorAll('.open-modal').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    openArticleInModal(link.dataset.articleId);
+  });
+});
 
 
 </script>
