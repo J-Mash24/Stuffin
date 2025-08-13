@@ -192,30 +192,30 @@
   <button class="menu-btn" data-target="menu1">Python projects</button>
   <div id="menu1" class="dropdown">
 
-    
+    <!-- First submenu -->
     <div style="position:relative;">
       <button class="submenu-btn" data-target="PoliticalAnalysisDropdown">Politcal Analysis ▸</button>
       <div id="PoliticalAnalysisDropdown" class="dropdown nested">
-        <a href="#" onclick="openArticleInModal('military spending'); return false;">Military Spending</a>
-        <a href="#" onclick="openArticleInModal('education'); return false;">Lack of Education</a>
-        <a href="#" onclick="openArticleInModal('china'); return false;">China's Global Role</a>
-        <a href="#" onclick="openArticleInModal('chinasm'); return false;">Chinese Emigration</a>
-        <a href="#" onclick="openArticleInModal('germany'); return false;">German Politics</a>
-        <a href="#" onclick="openArticleInModal('elections'); return false;">USA Elections</a>
+        <a href="#" data-article-id="military spending" class="open-modal">Military Spending</a>
+       <a href="#" data-article-id="education" class="open-modal">Lack of Education</a>
+       <a href="#" data-article-id="china" class="open-modal">China's Global Role</a>
+        <a href="#" data-article-id="chinam" class="open-modal">Chinese Emigration</a>
+        <a href="#" data-article-id="germany" class="open-modal">German Politics</a>
+        <a href="#" data-article-id="elections" class="open-modal">USA Elections</a>
       </div>
     </div>
 
-    
+    <!-- Second submenu -->
     <div style="position:relative;">
       <button class="submenu-btn" data-target="SportsAnalysisDropdown">Sports Analysis ▸</button>
       <div id="SportsAnalysisDropdown" class="dropdown nested">
-        <a href="#" onclick="openArticleInModal('python1'); return false;">Olympic Medals (Sprint)</a>
-        <a href="#" onclick="openArticleInModal('euroleague'); return false;">Euroleague (Part 1)</a>
-        <a href="#" onclick="openArticleInModal('euroleague2'); return false;">Euroleague (Part 2)</a>
-        <a href="#" onclick="openArticleInModal('olympic marathon'); return false;">Olympic Medals (Marathon)</a>
-        <a href="#" onclick="openArticleInModal('olympic marathon(women)'); return false;">Olympic Medals (Marathon (Women))</a>
-        <a href="#" onclick="openArticleInModal('carter'); return false;">Vince Carter Shooting Chart</a>
-        <a href="#" onclick="openArticleInModal('nhl'); return false;">NHL Goal Density</a>
+        <a href="#" data-article-id="python1" class="open-modal">Olympic Medals (Sprint)</a>
+        <a href="#" data-article-id="euroleague" class="open-modal">Euroleague (Part 1)</a>
+        <a href="#" data-article-id="euroleague2" class="open-modal">Euroleague (Part 2)</a>
+        <a href="#" data-article-id="olympic marathon" class="open-modal">Olympic Medals (Marathon)</a>
+        <a href="#" data-article-id="olympic marathon(women)" class="open-modal">Olympic Medals (Marathon (Women))</a>
+        <a href="#" data-article-id="carter" class="open-modal">Vince Carter Shooting Chart</a>
+        <a href="#" data-article-id="nhl" class="open-modal">NHL Goal Density</a>
       </div>
     </div>
 
@@ -226,8 +226,8 @@
   <div class="menu-item">
     <button class="menu-btn" data-target="menu2">R projects</button>
     <div id="menu2" class="dropdown">
-      <a href="#" onclick="openArticleInModal('nhlr'); return false;">NHL</a>
-      <a href="#" onclick="openArticleInModal('nba1995'); return false;">NBA</a>
+      <a href="#" data-article-id="nhlr" class="open-modal">NHL</a>
+      <a href="#" data-article-id="nba1995" class="open-modal">NBA</a>
     </div>
   </div>
 
@@ -237,9 +237,9 @@
       <div style="position:relative;">
         <button class="submenu-btn" data-target="bullsDropdown">Bulls ▸</button>
         <div id="bullsDropdown" class="dropdown nested">
-          <a href="#" onclick="openArticleInModal('sport1'); return false;">Is the Bulls’ close connection to Chicago fading?</a>
-          <a href="#" onclick="openArticleInModal('sport2'); return false;">Remembering the last truly beloved Chicago Bulls roster of 2012-13</a>
-          <a href="#" onclick="openArticleInModal('sport3'); return false;">4 Historic NBA teams the Bulls have completely devastated</a>
+          <a href="#" data-article-id="sport1" class="open-modal">Is the Bulls’ close connection to Chicago fading?</a>
+          <a href="#" data-article-id="sport2" class="open-modal">Remembering the last truly beloved Chicago Bulls roster of 2012-13</a>
+          <a href="#" data-article-id="sport3" class="open-modal">4 Historic NBA teams the Bulls have completely devastated</a>
         </div>
       </div>
     </div>
@@ -256,8 +256,8 @@
 <div class="menu-item">
     <button class="menu-btn" data-target="menu7">Social Media</button>
     <div id="menu7" class="dropdown">
-      <a href="#" onclick="openArticleInModal('courses'); return false;">LinkedIn</a>
-      <a href="#" onclick="openArticleInModal('courses1'); return false;">Substack</a>
+      <a href="#" data-article-id="courses" class="open-modal">LinkedIn</a>
+      <a href="#" data-article-id="courses1" class="open-modal">Substack</a>
     </div>
   </div>
 
@@ -294,7 +294,7 @@ We talked about the opening of NATO's doors, about the first (and so far only) a
   </div>
 
 
-  
+  <!-- Article contents that show when clicking dropdown links -->
   <div id="python1" class="article-content">
     <h2>Olympic Medals</h2>
     <img src="https://assets.aws.worldathletics.org/large/61102815c0313acaff244dd4.jpg" alt="medals" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)" />
@@ -1011,20 +1011,20 @@ When people say, that Biden was too old to run for his second term, Republican O
   </div>
 </main>
 
-
+<!-- Modal container (hidden by default) -->
 <div id="articleModal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()">✖</button>
     <div id="modalContent"></div>
   </div>
 </div>
-
+<!-- Image Zoom Overlay -->
 <div id="imgZoomOverlay" onclick="closeZoom()">
   <img id="zoomedImg" src="" alt="Zoomed Image" />
 </div>
 
 
-
+<!-- Search results area -->
 <div class="search-container">
   <input type="text" id="searchInput" placeholder="Search articles..." />
   <button onclick="searchArticles()">Search</button>
@@ -1138,14 +1138,14 @@ When people say, that Biden was too old to run for his second term, Republican O
 
 <script>
 
-  
+  // Toggle a dropdown by id, but keep ancestor dropdowns open for nested menus
   function toggleDropdownById(id) {
   const target = document.getElementById(id);
   if (!target) return;
 
   const isOpen = target.style.display === 'block';
 
-  
+  // Close all other dropdowns
   document.querySelectorAll('.dropdown').forEach(d => {
     if (d !== target && !d.contains(target)) {
       d.style.display = 'none';
@@ -1175,7 +1175,7 @@ function showArticleById(id) {
   }
 }
 
-
+// Handle both click and touch events for menu buttons
 ['click', 'touchstart'].forEach(eventType => {
   document.querySelectorAll('.menu-btn, .submenu-btn').forEach(btn => {
     btn.addEventListener(eventType, e => {
@@ -1186,7 +1186,7 @@ function showArticleById(id) {
   });
 });
 
-
+// Dropdown links open articles
 document.querySelectorAll('.dropdown a[data-article]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
@@ -1196,11 +1196,11 @@ document.querySelectorAll('.dropdown a[data-article]').forEach(link => {
   });
 });
 
-
+// Click/tap outside closes menus
 document.addEventListener('click', closeAllDropdowns);
 document.addEventListener('touchstart', closeAllDropdowns);
 
-
+// Escape key closes menus and articles
 document.addEventListener('keydown', e => {
   if (e.key === 'Escape') {
     closeAllDropdowns();
@@ -1208,7 +1208,7 @@ document.addEventListener('keydown', e => {
   }
 });
 
-
+// ===== Modal Functions =====
 function openArticleInModal(articleId) {
   const modal = document.getElementById('articleModal');
   const modalContent = document.getElementById('modalContent');
@@ -1226,7 +1226,7 @@ function closeModal() {
   document.body.style.overflow = 'auto';
 }
 
-
+// ===== Image Zoom =====
 function zoomImage(src) {
   const overlay = document.getElementById('imgZoomOverlay');
   const zoomedImg = document.getElementById('zoomedImg');
@@ -1241,7 +1241,7 @@ function closeZoom() {
   document.body.style.overflow = 'auto';
 }
 
-
+// ===== Search =====
 function searchArticles() {
   const query = document.getElementById('searchInput').value.toLowerCase();
   const resultsDiv = document.getElementById('searchResults');
@@ -1261,13 +1261,19 @@ function searchArticles() {
       a.href = article.link;
       a.target = "_blank";
       a.textContent = article.title;
-      a.className = 'search-result'; 
+      a.className = 'search-result'; // styled in CSS
       resultsDiv.appendChild(a);
     });
   } else {
     resultsDiv.textContent = "No articles found.";
   }
 }
+document.querySelectorAll('.open-modal').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    openArticleInModal(link.dataset.articleId);
+  });
+});
 
 
 </script>
