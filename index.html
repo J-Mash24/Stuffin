@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stuffin,</title>
 <style>
+  /* Basic page layout / fonts */
   body {
     margin: 0;
     font-family: 'Cooper Black', Arial, sans-serif;
@@ -12,7 +13,7 @@
     color: #111;
   }
 
- 
+  /* Header (top-right page name) */
   header {
     display: flex;
     justify-content: flex-end;
@@ -23,7 +24,7 @@
     font-size: 1.4rem;
   }
 
-  
+  /* Top navigation bar */
   nav {
     display: flex;
     gap: 18px;
@@ -33,9 +34,9 @@
     align-items: center;
   }
 
-  
+  /* Each item in the nav is a menu-item; button toggles the dropdown */
   .menu-item {
-    position: relative; 
+    position: relative; /* makes absolute dropdown position relative to this */
   }
 
   .menu-btn {
@@ -49,41 +50,67 @@
   }
   .menu-btn:focus { outline: 2px solid #999; }
 
-  
-  .dropdown {
-    display: none;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    min-width: 220px;
-    background: #fff;
-    color: #111;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-    z-index: 1000;
-  }
+  /* Dropdowns (hidden by default) */
+  /* Desktop dropdown */
+.dropdown {
+  max-height: 0; /* start collapsed */
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: #fff;
+  color: #111;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  z-index: 1000;
+}
 
-  
-  .dropdown.nested {
-    left: 100%;
-    top: 0;
+/* Nested dropdown appears to the right of parent */
+.dropdown.nested {
+  left: 100%;
+  top: 0;
+}
+
+/* Dropdown links and submenu buttons */
+.dropdown a,
+.dropdown .submenu-btn {
+  display: block;
+  padding: 10px 14px;
+  font-size: 1rem;
+  text-decoration: none;
+  color: #111;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.dropdown a:hover,
+.dropdown .submenu-btn:hover {
+  background: #f1f1f1;
+}
+
+/* Mobile / static version */
+@media (max-width: 768px) {
+  .dropdown {
+    position: static;
+    min-width: unset;
+    box-shadow: none;
+    border-top: 1px solid #ddd;
   }
 
   .dropdown a,
   .dropdown .submenu-btn {
-    display: block;
-    padding: 10px 14px;
-    text-decoration: none;
-    color: #111;
-    cursor: pointer;
-    white-space: nowrap;
+    padding: 12px;
+    font-size: 1rem;
   }
+}
 
-  .dropdown a:hover,
-  .dropdown .submenu-btn:hover {
-    background: #f1f1f1;
-  }
+/* Show dropdown when active (via JS) */
+.dropdown.show {
+  max-height: 500px; /* or large enough to fit content */
+}
 
-  
+  /* Main content and articles */
   main {
     max-width: 900px;
     margin: 24px auto;
@@ -99,7 +126,7 @@
     text-align: left;
   }
 
- 
+  /* article-content (the articles shown when clicking links) */
   .article-content {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif !important;
@@ -116,7 +143,7 @@
     opacity: 1;
   }
 
-  
+  /* small responsive tweak */
   @media (max-width: 640px) {
     nav { overflow-x: auto; }
     .dropdown { min-width: 160px; }
@@ -125,7 +152,7 @@
 #modalContent * {
   font-family: Arial, Helvetica, sans-serif !important;
 }
-
+/* Small screen adjustments */
 @media (max-width: 768px) {
   nav {
     flex-direction: column;
@@ -159,7 +186,7 @@
   }
 }
 
-
+/* Extra small screens */
 @media (max-width: 480px) {
   header {
     font-size: 1.2rem;
@@ -182,7 +209,6 @@
 </head>
 <body>
 
-<body>
 
 <header>Stuffin,</header>
 
@@ -191,7 +217,7 @@
   <button class="menu-btn" data-target="menu1">Python projects</button>
   <div id="menu1" class="dropdown">
 
-    
+    <!-- First submenu -->
     <div style="position:relative;">
       <button class="submenu-btn" data-target="PoliticalAnalysisDropdown">Politcal Analysis ▸</button>
       <div id="PoliticalAnalysisDropdown" class="dropdown nested">
@@ -204,7 +230,7 @@
       </div>
     </div>
 
-    
+    <!-- Second submenu -->
     <div style="position:relative;">
       <button class="submenu-btn" data-target="SportsAnalysisDropdown">Sports Analysis ▸</button>
       <div id="SportsAnalysisDropdown" class="dropdown nested">
@@ -247,8 +273,8 @@
   <div class="menu-item">
     <button class="menu-btn" data-target="menu6">Political & History Articles</button>
     <div id="menu6" class="dropdown">
-      <a href="#" data-article="pol1">Reference A</a>
-      <a href="#" data-article="pol2">Reference B</a>
+      <a href="#" data-article-id="pol1">Reference A</a>
+      <a href="#" data-article-id="pol2">Reference B</a>
     </div>
   </div>
 
@@ -293,7 +319,7 @@ We talked about the opening of NATO's doors, about the first (and so far only) a
   </div>
 
 
-  
+  <!-- Article contents that show when clicking dropdown links -->
   <div id="python1" class="article-content">
     <h2>Olympic Medals</h2>
     <img src="https://assets.aws.worldathletics.org/large/61102815c0313acaff244dd4.jpg" alt="medals" style="max-width:300px; cursor:pointer;" onclick="zoomImage(this.src)" />
@@ -1010,20 +1036,20 @@ When people say, that Biden was too old to run for his second term, Republican O
   </div>
 </main>
 
-
+<!-- Modal container (hidden by default) -->
 <div id="articleModal">
   <div class="modal-box">
     <button class="modal-close" onclick="closeModal()">✖</button>
     <div id="modalContent"></div>
   </div>
 </div>
-
+<!-- Image Zoom Overlay -->
 <div id="imgZoomOverlay" onclick="closeZoom()">
   <img id="zoomedImg" src="" alt="Zoomed Image" />
 </div>
 
 
-
+<!-- Search results area -->
 <div class="search-container">
   <input type="text" id="searchInput" placeholder="Search articles..." />
   <button onclick="searchArticles()">Search</button>
@@ -1031,7 +1057,7 @@ When people say, that Biden was too old to run for his second term, Republican O
 
 <div id="searchResults"></div>
 <style>
-/
+/* ===== Modal ===== */
 #articleModal {
   display: none;
   position: fixed;
@@ -1066,7 +1092,7 @@ When people say, that Biden was too old to run for his second term, Republican O
   border: none;
 }
 
-
+/* ===== Image Zoom Overlay ===== */
 #imgZoomOverlay {
   display: none;
   position: fixed;
@@ -1088,7 +1114,7 @@ When people say, that Biden was too old to run for his second term, Republican O
   box-shadow: 0 0 10px #fff;
 }
 
-
+/* ===== Search Bar ===== */
 .search-container {
   margin-bottom: 10px;
   text-align: center;
@@ -1109,7 +1135,7 @@ When people say, that Biden was too old to run for his second term, Republican O
   text-align: center;
 }
 
-
+/* ===== Mobile Adjustments ===== */
 @media (max-width: 480px) {
   #articleModal .modal-box {
     padding: 12px;
@@ -1137,145 +1163,113 @@ When people say, that Biden was too old to run for his second term, Republican O
 
 <script>
 
-  
-  function toggleDropdownById(id) {
-  const target = document.getElementById(id);
-  if (!target) return;
+  // Toggle a dropdown by id, but keep ancestor dropdowns open for nested menus
+document.addEventListener('DOMContentLoaded', () => {
+  // Open/close dropdowns
+  document.querySelectorAll('.dropdown-toggle').forEach(btn => {
+    btn.setAttribute('aria-haspopup', 'true');
+    btn.setAttribute('aria-expanded', 'false');
 
-  const isOpen = target.style.display === 'block';
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const dropdown = btn.nextElementSibling;
+      const isOpen = dropdown.classList.contains('open');
 
-  // Close all other dropdowns
-  document.querySelectorAll('.dropdown').forEach(d => {
-    if (d !== target && !d.contains(target)) {
-      d.style.display = 'none';
+      // Close all other dropdowns
+      document.querySelectorAll('.dropdown.open').forEach(d => {
+        d.classList.remove('open');
+        d.previousElementSibling.setAttribute('aria-expanded', 'false');
+      });
+
+      if (!isOpen) {
+        dropdown.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    const openDropdown = document.querySelector('.dropdown.open');
+    if (!openDropdown) return;
+
+    const items = Array.from(openDropdown.querySelectorAll('a, button'));
+    let idx = items.indexOf(document.activeElement);
+
+    switch (e.key) {
+      case 'ArrowDown':
+        e.preventDefault();
+        idx = (idx + 1) % items.length;
+        items[idx].focus();
+        break;
+      case 'ArrowUp':
+        e.preventDefault();
+        idx = (idx - 1 + items.length) % items.length;
+        items[idx].focus();
+        break;
+      case 'Escape':
+        openDropdown.classList.remove('open');
+        openDropdown.previousElementSibling.setAttribute('aria-expanded', 'false');
+        openDropdown.previousElementSibling.focus();
+        break;
     }
   });
 
-  target.style.display = isOpen ? 'none' : 'block';
-}
-
-function closeAllDropdowns() {
-  document.querySelectorAll('.dropdown').forEach(d => d.style.display = 'none');
-}
-
-function hideAllArticles() {
-  document.querySelectorAll('.article-content').forEach(a => {
-    a.classList.remove('visible');
+  // Close dropdowns when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.dropdown, .dropdown-toggle')) {
+      document.querySelectorAll('.dropdown.open').forEach(d => {
+        d.classList.remove('open');
+        d.previousElementSibling.setAttribute('aria-expanded', 'false');
+      });
+    }
   });
-}
 
-function showArticleById(id) {
-  hideAllArticles();
-  closeAllDropdowns();
-  const a = document.getElementById(id);
-  if (a) {
-    a.classList.add('visible');
-    a.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-}
-
-
-['click', 'touchstart'].forEach(eventType => {
-  document.querySelectorAll('.menu-btn, .submenu-btn').forEach(btn => {
-    btn.addEventListener(eventType, e => {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleDropdownById(btn.dataset.target);
-    });
-  });
-});
-
-
-document.querySelectorAll('.dropdown a[data-article]').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    e.stopPropagation();
-    showArticleById(link.dataset.article);
-    closeAllDropdowns();
-  });
-});
-
-
-document.addEventListener('click', closeAllDropdowns);
-document.addEventListener('touchstart', closeAllDropdowns);
-
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeAllDropdowns();
-    hideAllArticles();
-  }
-});
-
-
-function openArticleInModal(articleId) {
-  const modal = document.getElementById('articleModal');
+  // Modal logic
+  const modal = document.getElementById('modal');
   const modalContent = document.getElementById('modalContent');
-  const article = document.getElementById(articleId);
-  if (!article) return;
 
-  modalContent.innerHTML = article.innerHTML;
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeModal() {
-  const modal = document.getElementById('articleModal');
-  modal.style.display = 'none';
-  document.body.style.overflow = 'auto';
-}
-
-
-function zoomImage(src) {
-  const overlay = document.getElementById('imgZoomOverlay');
-  const zoomedImg = document.getElementById('zoomedImg');
-  zoomedImg.src = src;
-  overlay.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
-}
-
-function closeZoom() {
-  const overlay = document.getElementById('imgZoomOverlay');
-  overlay.style.display = 'none';
-  document.body.style.overflow = 'auto';
-}
-
-
-function searchArticles() {
-  const query = document.getElementById('searchInput').value.toLowerCase();
-  const resultsDiv = document.getElementById('searchResults');
-  resultsDiv.innerHTML = '';
-
-  const articles = [
-    { title: "Is the Bulls’ close connection to Chicago fading?", link: "articles/sport1.html" },
-    { title: "Remembering the last beloved Bulls roster of 2012-13", link: "articles/sport2.html" },
-    { title: "Celtics comeback stories", link: "articles/celtics1.html" }
-  ];
-
-  const matches = articles.filter(article => article.title.toLowerCase().includes(query));
-
-  if (matches.length > 0) {
-    matches.forEach(article => {
-      const a = document.createElement('a');
-      a.href = article.link;
-      a.target = "_blank";
-      a.textContent = article.title;
-      a.className = 'search-result'; // styled in CSS
-      resultsDiv.appendChild(a);
+  document.querySelectorAll('.open-modal').forEach(btn => {
+    btn.addEventListener('click', () => {
+      modal.classList.add('open');
+      modal.setAttribute('aria-hidden', 'false');
+      modalContent.focus();
     });
-  } else {
-    resultsDiv.textContent = "No articles found.";
-  }
-}
-document.querySelectorAll('.open-modal').forEach(link => {
-  link.addEventListener('click', e => {
-    e.preventDefault();
-    openArticleInModal(link.dataset.articleId);
+  });
+
+  document.getElementById('closeModal').addEventListener('click', () => {
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+  });
+
+  // Close modal with Escape
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.classList.contains('open')) {
+      modal.classList.remove('open');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+  });
+
+  // Trap focus inside modal
+  modal.addEventListener('keydown', (e) => {
+    if (e.key !== 'Tab') return;
+
+    const focusable = Array.from(modal.querySelectorAll('a, button, input, textarea'));
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (e.shiftKey && document.activeElement === first) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && document.activeElement === last) {
+      e.preventDefault();
+      first.focus();
+    }
   });
 });
+
 
 
 </script>
 </body>
 </html>
-
