@@ -24,24 +24,160 @@
     font-size: 1.4rem;
   }
 
-  /* Basic page layout / fonts */
-  body {
-    margin: 0;
-    font-family: 'Cooper Black', Arial, sans-serif;
-    background: #fafafa;
-    color: #111;
+  /* Top navigation bar */
+  nav {
+    display: flex;
+    gap: 18px;
+    background: #333;
+    padding: 10px 20px;
+    color: white;
+    align-items: center;
   }
 
-  /* Header (top-right page name) */
-  header {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    background: #333;
-    color: white;
-    padding: 12px 20px;
-    font-size: 1.4rem;
+  /* Each item in the nav is a menu-item; button toggles the dropdown */
+  .menu-item {
+    position: relative; /* makes absolute dropdown position relative to this */
   }
+
+  .menu-btn {
+    background: transparent;
+    color: white;
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  .menu-btn:focus { outline: 2px solid #999; }
+
+  /* Dropdowns (hidden by default) */
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 220px;
+    background: #fff;
+    color: #111;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    z-index: 1000;
+  }
+
+  /* nested dropdown appears to the right of its parent dropdown */
+  .dropdown.nested {
+    left: 100%;
+    top: 0;
+  }
+
+  .dropdown a,
+  .dropdown .submenu-btn {
+    display: block;
+    padding: 10px 14px;
+    text-decoration: none;
+    color: #111;
+    cursor: pointer;
+    white-space: nowrap;
+  }
+
+  .dropdown a:hover,
+  .dropdown .submenu-btn:hover {
+    background: #f1f1f1;
+  }
+
+  /* Main content and articles */
+  main {
+    max-width: 900px;
+    margin: 24px auto;
+    padding: 0 18px;
+  }
+
+  .article {
+    font-family: Georgia, serif;
+    background: #fff;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    margin-bottom: 18px;
+    text-align: left;
+  }
+
+  /* article-content (the articles shown when clicking links) */
+  .article-content {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif !important;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    background: #fff;
+    padding: 18px;
+    border: 1px solid #e0e0e0;
+    margin-top: 20px;
+  }
+  .article-content.visible {
+    display: block;
+    opacity: 1;
+  }
+
+  /* small responsive tweak */
+  @media (max-width: 640px) {
+    nav { overflow-x: auto; }
+    .dropdown { min-width: 160px; }
+  }
+  #modalContent, 
+#modalContent * {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+/* Small screen adjustments */
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .menu-item {
+    width: 100%;
+  }
+
+  .menu-btn {
+    width: 100%;
+    text-align: left;
+    padding: 14px;
+    font-size: 1.1rem;
+    background: #444;
+    border-top: 1px solid #555;
+  }
+
+  .dropdown {
+    position: static;
+    min-width: unset;
+    box-shadow: none;
+    border-top: 1px solid #ddd;
+  }
+
+  .dropdown a,
+  .dropdown .submenu-btn {
+    padding: 12px;
+    font-size: 1rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  header {
+    font-size: 1.2rem;
+    padding: 10px;
+    text-align: center;
+  }
+
+  main {
+    padding: 0 10px;
+  }
+
+  .article-content {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+}
+
 
 </style>
 </head>
@@ -53,12 +189,12 @@
 
 <nav>
   <div class="menu-item">
-  <button type="button" class="menu-btn" data-target="menu1">Python projects</button>
+  <button class="menu-btn" data-target="menu1">Python projects</button>
   <div id="menu1" class="dropdown">
 
     
     <div style="position:relative;">
-      <button type="button" class="submenu-btn" data-target="PoliticalAnalysisDropdown">Politcal Analysis ▸</button>
+      <button class="submenu-btn" data-target="PoliticalAnalysisDropdown">Politcal Analysis ▸</button>
       <div id="PoliticalAnalysisDropdown" class="dropdown nested">
         <a href="#" data-article-id="military spending" class="open-modal">Military Spending</a>
        <a href="#" data-article-id="education" class="open-modal">Lack of Education</a>
@@ -71,7 +207,7 @@
 
     
     <div style="position:relative;">
-      <button type="button" class="submenu-btn" data-target="SportsAnalysisDropdown">Sports Analysis ▸</button>
+      <button class="submenu-btn" data-target="SportsAnalysisDropdown">Sports Analysis ▸</button>
       <div id="SportsAnalysisDropdown" class="dropdown nested">
         <a href="#" data-article-id="python1" class="open-modal">Olympic Medals (Sprint)</a>
         <a href="#" data-article-id="euroleague" class="open-modal">Euroleague (Part 1)</a>
@@ -88,29 +224,29 @@
 
 
   <div class="menu-item">
-    <button type="button" class="menu-btn" data-target="menu2">R projects</button>
+    <button class="menu-btn" data-target="menu2">R projects</button>
     <div id="menu2" class="dropdown">
-      <a href="#" data-article-id="nhlr" class="open-modal">NHL</a>
-      <a href="#" data-article-id="nba1995" class="open-modal">NBA</a>
+      <a href="#" onclick="openArticleInModal('nhlr'); return false;">NHL</a>
+      <a href="#" onclick="openArticleInModal('nba1995'); return false;">NBA</a>
     </div>
   </div>
 
   <div class="menu-item">
-    <button type="button" class="menu-btn" data-target="menu5">Sport Articles</button>
+    <button class="menu-btn" data-target="menu5">Sport Articles</button>
     <div id="menu5" class="dropdown">
       <div style="position:relative;">
-        <button type="button" class="submenu-btn" data-target="bullsDropdown">Bulls ▸</button>
+        <button class="submenu-btn" data-target="bullsDropdown">Bulls ▸</button>
         <div id="bullsDropdown" class="dropdown nested">
-          <a href="#" data-article-id="sport1" class="open-modal">Is the Bulls’ close connection to Chicago fading?</a>
-          <a href="#" data-article-id="sport2" class="open-modal">Remembering the last truly beloved Chicago Bulls roster of 2012-13</a>
-          <a href="#" data-article-id="sport3" class="open-modal">4 Historic NBA teams the Bulls have completely devastated</a>
+          <a href="#" onclick="openArticleInModal('sport1'); return false;">Is the Bulls’ close connection to Chicago fading?</a>
+          <a href="#" onclick="openArticleInModal('sport2'); return false;">Remembering the last truly beloved Chicago Bulls roster of 2012-13</a>
+          <a href="#" onclick="openArticleInModal('sport3'); return false;">4 Historic NBA teams the Bulls have completely devastated</a>
         </div>
       </div>
     </div>
   </div>
 
   <div class="menu-item">
-    <button type="button" class="menu-btn" data-target="menu6">Political & History Articles</button>
+    <button class="menu-btn" data-target="menu6">Political & History Articles</button>
     <div id="menu6" class="dropdown">
       <a href="#" data-article="pol1">Reference A</a>
       <a href="#" data-article="pol2">Reference B</a>
@@ -118,10 +254,10 @@
   </div>
 
 <div class="menu-item">
-    <button type="button" class="menu-btn" data-target="menu7">Social Media</button>
+    <button class="menu-btn" data-target="menu7">Social Media</button>
     <div id="menu7" class="dropdown">
-      <a href="#" data-article-id="courses" class="open-modal">LinkedIn</a>
-      <a href="#" data-article-id="courses1" class="open-modal">Substack</a>
+      <a href="#" onclick="openArticleInModal('courses'); return false;">LinkedIn</a>
+      <a href="#" onclick="openArticleInModal('courses1'); return false;">Substack</a>
     </div>
   </div>
 
@@ -883,25 +1019,18 @@ When people say, that Biden was too old to run for his second term, Republican O
   </div>
 </div>
 
-<div id="articleModal">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeModal()">✖</button>
-    <div id="modalContent"></div>
-  </div>
-</div>
-
-<!-- Image Zoom Overlay -->
 <div id="imgZoomOverlay" onclick="closeZoom()">
   <img id="zoomedImg" src="" alt="Zoomed Image" />
 </div>
 
-<!-- Search -->
+
+
 <div class="search-container">
   <input type="text" id="searchInput" placeholder="Search articles..." />
   <button onclick="searchArticles()">Search</button>
 </div>
-<div id="searchResults"></div>
 
+<div id="searchResults"></div>
 <style>
 /* ===== Modal ===== */
 #articleModal {
@@ -921,7 +1050,7 @@ When people say, that Biden was too old to run for his second term, Republican O
   background: #fff;
   padding: 20px;
   max-width: 600px;
-  width: 95%;
+  width: 90%;
   max-height: 80vh;
   overflow-y: auto;
   position: relative;
@@ -954,8 +1083,8 @@ When people say, that Biden was too old to run for his second term, Republican O
 }
 
 #zoomedImg {
-  max-width: 95%;
-  max-height: 80vh;
+  max-width: 90%;
+  max-height: 90%;
   border-radius: 8px;
   box-shadow: 0 0 10px #fff;
 }
@@ -969,7 +1098,7 @@ When people say, that Biden was too old to run for his second term, Republican O
 .search-container input {
   padding: 6px;
   width: 250px;
-  max-width: 95%;
+  max-width: 90%;
 }
 
 .search-container button {
@@ -1010,14 +1139,13 @@ When people say, that Biden was too old to run for his second term, Republican O
 <script>
 
   
-  /* ===== DROPDOWNS ===== */
-function toggleDropdownById(id) {
+  function toggleDropdownById(id) {
   const target = document.getElementById(id);
   if (!target) return;
 
   const isOpen = target.style.display === 'block';
 
-  // Close all other dropdowns except ancestors
+  
   document.querySelectorAll('.dropdown').forEach(d => {
     if (d !== target && !d.contains(target)) {
       d.style.display = 'none';
@@ -1031,7 +1159,6 @@ function closeAllDropdowns() {
   document.querySelectorAll('.dropdown').forEach(d => d.style.display = 'none');
 }
 
-/* ===== ARTICLES ===== */
 function hideAllArticles() {
   document.querySelectorAll('.article-content').forEach(a => {
     a.classList.remove('visible');
@@ -1041,14 +1168,47 @@ function hideAllArticles() {
 function showArticleById(id) {
   hideAllArticles();
   closeAllDropdowns();
-  const article = document.getElementById(id);
-  if (article) {
-    article.classList.add('visible');
-    article.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const a = document.getElementById(id);
+  if (a) {
+    a.classList.add('visible');
+    a.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
-/* ===== MODAL ===== */
+
+['click', 'touchstart'].forEach(eventType => {
+  document.querySelectorAll('.menu-btn, .submenu-btn').forEach(btn => {
+    btn.addEventListener(eventType, e => {
+      e.preventDefault();
+      e.stopPropagation();
+      toggleDropdownById(btn.dataset.target);
+    });
+  });
+});
+
+
+document.querySelectorAll('.dropdown a[data-article]').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+    showArticleById(link.dataset.article);
+    closeAllDropdowns();
+  });
+});
+
+
+document.addEventListener('click', closeAllDropdowns);
+document.addEventListener('touchstart', closeAllDropdowns);
+
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeAllDropdowns();
+    hideAllArticles();
+  }
+});
+
+
 function openArticleInModal(articleId) {
   const modal = document.getElementById('articleModal');
   const modalContent = document.getElementById('modalContent');
@@ -1066,7 +1226,7 @@ function closeModal() {
   document.body.style.overflow = 'auto';
 }
 
-/* ===== IMAGE ZOOM ===== */
+
 function zoomImage(src) {
   const overlay = document.getElementById('imgZoomOverlay');
   const zoomedImg = document.getElementById('zoomedImg');
@@ -1081,16 +1241,16 @@ function closeZoom() {
   document.body.style.overflow = 'auto';
 }
 
-/* ===== SEARCH ===== */
+
 function searchArticles() {
   const query = document.getElementById('searchInput').value.toLowerCase();
   const resultsDiv = document.getElementById('searchResults');
   resultsDiv.innerHTML = '';
 
   const articles = [
-    { title: "Is the Bulls’ close connection to Chicago fading?", id: "sport1" },
-    { title: "Remembering the last beloved Bulls roster of 2012-13", id: "sport2" },
-    { title: "Celtics comeback stories", id: "celtics1" }
+    { title: "Is the Bulls’ close connection to Chicago fading?", link: "articles/sport1.html" },
+    { title: "Remembering the last beloved Bulls roster of 2012-13", link: "articles/sport2.html" },
+    { title: "Celtics comeback stories", link: "articles/celtics1.html" }
   ];
 
   const matches = articles.filter(article => article.title.toLowerCase().includes(query));
@@ -1098,66 +1258,22 @@ function searchArticles() {
   if (matches.length > 0) {
     matches.forEach(article => {
       const a = document.createElement('a');
-      a.href = "#";
+      a.href = article.link;
+      a.target = "_blank";
       a.textContent = article.title;
-      a.className = 'search-result open-modal';
-      a.dataset.articleId = article.id;
-      a.style.display = 'block';
-      a.style.margin = '5px 0';
+      a.className = 'search-result'; 
       resultsDiv.appendChild(a);
     });
-
-    // Attach modal opening to new search links
-    attachModalLinks();
   } else {
     resultsDiv.textContent = "No articles found.";
   }
 }
-
-/* ===== EVENT ATTACHMENTS ===== */
-function attachModalLinks() {
-  document.querySelectorAll('.open-modal').forEach(link => {
-    // Remove previous listener to avoid duplicates
-    link.replaceWith(link.cloneNode(true));
-  });
-
-  document.querySelectorAll('.open-modal').forEach(link => {
-    link.addEventListener('click', e => {
-      e.preventDefault();
-      e.stopPropagation();
-      openArticleInModal(link.dataset.articleId);
-      closeAllDropdowns();
-    });
-  });
-}
-
-/* ===== INITIALIZE ===== */
-['click', 'touchstart'].forEach(eventType => {
-  document.querySelectorAll('.menu-btn, .submenu-btn').forEach(btn => {
-    btn.addEventListener(eventType, e => {
-      e.preventDefault();
-      e.stopPropagation();
-      toggleDropdownById(btn.dataset.target);
-    });
+document.querySelectorAll('.open-modal').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    openArticleInModal(link.dataset.articleId);
   });
 });
-
-// Click outside closes dropdowns
-['click', 'touchstart'].forEach(eventType => {
-  document.addEventListener(eventType, closeAllDropdowns);
-});
-
-// Escape key closes dropdowns and articles
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') {
-    closeAllDropdowns();
-    hideAllArticles();
-  }
-});
-
-// Initial attach of modal links
-attachModalLinks();
-
 
 
 </script>
