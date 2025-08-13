@@ -1050,7 +1050,7 @@ When people say, that Biden was too old to run for his second term, Republican O
   background: #fff;
   padding: 20px;
   max-width: 600px;
-  width: 90%;
+  width: 95%;
   max-height: 80vh;
   overflow-y: auto;
   position: relative;
@@ -1083,8 +1083,8 @@ When people say, that Biden was too old to run for his second term, Republican O
 }
 
 #zoomedImg {
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 95%;
+  max-height: 80vh;
   border-radius: 8px;
   box-shadow: 0 0 10px #fff;
 }
@@ -1098,7 +1098,7 @@ When people say, that Biden was too old to run for his second term, Republican O
 .search-container input {
   padding: 6px;
   width: 250px;
-  max-width: 90%;
+  max-width: 95%;
 }
 
 .search-container button {
@@ -1187,12 +1187,13 @@ function showArticleById(id) {
 });
 
 
-document.querySelectorAll('.dropdown a[data-article]').forEach(link => {
+document.querySelectorAll('.open-modal').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault();
     e.stopPropagation();
-    showArticleById(link.dataset.article);
-    closeAllDropdowns();
+    const articleId = link.dataset.articleId;
+    openArticleInModal(articleId);
+    closeAllDropdowns(); 
   });
 });
 
